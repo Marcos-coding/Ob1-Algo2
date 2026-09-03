@@ -11,7 +11,7 @@
 - Implementación íntegramente propia, sin fuentes externas.
 
 ## Ejercicio 2
-- Implementación íntegramente propia, sin fuentes externas.
+- Implementación propia, teniendo a la vista el codigo hecho en clase de hash cerrado.
 
 ## Ejercicio 3
 - Implementación íntegramente propia, sin fuentes externas.
