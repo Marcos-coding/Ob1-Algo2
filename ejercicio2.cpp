@@ -1,4 +1,5 @@
 #include <cassert>
+#include <complex>
 #include <string>
 #include <iostream>
 #include <limits>
@@ -23,20 +24,39 @@ class Cajonera {
         int maxCajon;
         Cajon** tabla;
 
-        int hash(string p){ ///Hacer
-            return 0;
+        int hash(string p){
+            int primos[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101}; //Saque de google como hardcodear el array
+            int hash = 1;
+            for(int i = 0; i < p.size(); i++){
+                hash = hash * primos[p[i] - 97];
+            }
+            return hash;
         }
-        
+        int normalizar(int h){
+            return abs(h % largoTabla);
+        }
+        bool esPrimo(int num) { //Copy paste del repo de clase
+            if (num < 2) return false;
+            for (int i = 2; i * i <= num; i++) {
+                if (num % i == 0) return false;
+            }
+            return true;
+        }
+
+        int primoSup(int num) { //del repo de clase
+            while (!esPrimo(++num));
+            return num;
+        }
     public:
         Cajonera(int esperados){
-            this->largoTabla = esperados; //Esto esta mal, resulta en factor de carga 1
+            this->largoTabla = primoSup(esperados*2); //Esto esta mal, resulta en factor de carga 1
             this->tabla = new Cajon*[this->largoTabla];
             for(int i = 0; i < this->largoTabla; i ++){
                 this->tabla[i] = NULL;
             }
         }
         void agregarCajon(string p){
-            int bucket = hash(p); //Falta el modulo
+            int bucket = normalizar(hash(p));
             Cajon* cajon = this->tabla[bucket];
             if(!cajon){
                 cantCajones++;
