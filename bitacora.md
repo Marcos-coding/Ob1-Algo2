@@ -20,7 +20,14 @@
 - Pasan los casos de prueba 1 a 4 del ejercicio 1.
 
 ## 2026-09-03 - Marcos Bellini
-- Comencé a implementar el AVL del ejercicio 1, utilizando las ideas y código discutidos en clase. Para ello creé un template AVL genérico con las funciones de agregar, buscar y rango, con los órdenes de tiempo de ejecución esperados. Tuve complicaciones al separar la clase en un archivo .h y uno .tpp para la implementación del template, pero lo pude terminar. La clase AVL contiene una clase privada Nodo, sobre la cual corren los algoritmos de inserción, búsqueda e impresión de rango. El árbol AVL contiene un nodo como raíz y al requerir de sus operaciones, se las llama.
+- Comencé a implementar el AVL del ejercicio 1, utilizando las ideas y código discutidos en clase. Para ello creé un template AVL genérico con las funciones de agregar, buscar y rango, con los órdenes de tiempo de ejecución esperados. Tuve complicaciones al separar la clase en un archivo .h y uno .cpp para la implementación del template, pero lo pude terminar. La clase AVL contiene una clase privada Nodo, sobre la cual corren los algoritmos de inserción, búsqueda e impresión de rango. El árbol AVL contiene un nodo como raíz y al requerir de sus operaciones, se las llama.
 - Para la inserción, se inserta el nodo como en un ABB normal, pero luego se actualizan las alturas de los nodos y se hacen rotaciones si es necesario. En este proceso, a lo sumo se recorre una rama entera del árbol, que como está en su mayoría balanceado. Por lo que es O(log(n))
 - Para la búsqueda, es como en un ABB, no hay diferencias. También es O(log(n))
 - Para el rango, también funciona como en un ABB. Se recorren nodos del árbol recursivamente hasta que haya uno en el intervalo [min, max]. Cuando se lo encuentra, sea éste Z, se recorren todos sus descendientes en orden, por lo que primero se va por Z->izq, luego se imprime Z y luego se va por Z->der.
+
+## 2026-09-04 - Marcos Bellini
+- Me encontré con errores de compilación en el AVL. Para resolverlos, ordené el código en el .h y el .cpp con ayuda de chatgpt para que no tuviera problemas con la clase AVL (separación de especificación e implementación) y ahí compiló. 
+-Luego descubrí que estaba usando el tamaño de número equivocado para las monedas; en vez de usar int tengo que usar long long para que no se salga de rango. Además, corregí la lectura de archivo por consola con el comando cin, que estaba leyendo mal las líneas.
+
+- También corregí el código de la función "rango" del AVL, que a veces no funcionaba bien.
+- Ahora, al hacer los tests y comparar con diff, el programa funciona con buena parte de las entradas (100.in.txt, 1000.in.txt, etc), pero en algunos archivos devuelve "segmentation fault".
