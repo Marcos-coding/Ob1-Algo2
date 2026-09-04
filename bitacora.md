@@ -1,9 +1,7 @@
 # Bitácora — Obligatorio 1
 
-<<<<<<< HEAD
-**Integrantes:** Marcos Bellini (304138), Nombre Apellido (Nº estudiante)
-=======
->>>>>>> 4533940485c8740a4116006bfce4ca8c9583c9fe
+**Integrantes:** Marcos Bellini (304138), Guillermo Bértola (303665)
+
 
 > **Instrucciones** (borrar esta sección antes de entregar): agregar una entrada por
 > cada día trabajado, indicando la fecha y quién trabajó (un integrante o "En conjunto").
