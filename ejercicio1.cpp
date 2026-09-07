@@ -48,7 +48,7 @@ int main()
             }
         }
         else if(tipo == "P"){
-            if(operacion == "ALTA"){ 
+            if(operacion == "ALTA"){
                 titulosPinturas->insertar(entrada);
             }
             else if(operacion == "BUSCAR"){

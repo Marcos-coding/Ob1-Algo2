@@ -31,3 +31,7 @@
 
 - También corregí el código de la función "rango" del AVL, que a veces no funcionaba bien.
 - Ahora, al hacer los tests y comparar con diff, el programa funciona con buena parte de las entradas (100.in.txt, 1000.in.txt, etc), pero en algunos archivos devuelve "segmentation fault".
+
+## 2026-09-07 - En conjunto
+
+- Resolvimos el error en el código del AVL, resulta que estaba haciendo mal las comparaciones del valor a la hora de hacer las rotaciones. Ahora funciona bien en todos los casos. 
