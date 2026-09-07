@@ -23,12 +23,12 @@ class Cajonera {
         int cantCajones;
         int maxCajon;
         Cajon** tabla;
+        int* primos;
 
         int hash(string p){
-            int primos[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101}; //Saque de google como hardcodear el array
-            int hash = 1;
+            int hash = 1; //Seria mejor que el array fuera un atributo del hash mismo??
             for(int i = 0; i < p.size(); i++){
-                hash = hash * primos[p[i] - 97];
+                hash = hash * this->primos[p[i] - 97];
             }
             return hash;
         }
@@ -49,24 +49,44 @@ class Cajonera {
         }
     public:
         Cajonera(int esperados){
-            this->largoTabla = primoSup(esperados*2); //Esto esta mal, resulta en factor de carga 1
+            this->largoTabla = primoSup(esperados*2);
             this->tabla = new Cajon*[this->largoTabla];
             for(int i = 0; i < this->largoTabla; i ++){
                 this->tabla[i] = NULL;
+            }
+            this->cantCajones = 0;
+            this->maxCajon = 0;
+            this->primos = new int[26];
+            int n = 1;
+            for(int i = 0; i < 26; i ++){
+                this->primos[i] = primoSup(n);
+                if(this->primos[i] == this->largoTabla){
+                    n = primos[i];
+                    this->primos[i] = primoSup(n);
+                }
+                n = primos[i];
             }
         }
         void agregarCajon(string p){
             int bucket = normalizar(hash(p));
             Cajon* cajon = this->tabla[bucket];
             if(!cajon){
-                cantCajones++;
+                this->cantCajones++;
+                Cajon* nuevo = new Cajon(p, 1, NULL);
+                this->tabla[bucket] = nuevo;
+                if(this->maxCajon == 0){
+                    this->maxCajon++;
+                }
+            }else{
+                int cant = cajon->getCant()+1;
+                Cajon* nuevo = new Cajon(p, cant, cajon);
+                this->tabla[bucket] = nuevo;
+                if(cant > this->maxCajon){
+                    this->maxCajon++;
+                }
             }
-            int cant = cajon->getCant()+1;
-            Cajon* nuevo = new Cajon(p, cant, cajon);
-            this->tabla[bucket] = nuevo;
-            if(cant > maxCajon){
-                maxCajon++;
-            }
+            
+            
         }
         int getMaxCajon(){
             return this->maxCajon;
@@ -75,14 +95,34 @@ class Cajonera {
             return this->cantCajones;
         }
         int consultaPal(string p){
-            int bucket = hash(p);
-            return this->tabla[bucket]->getCant();
+            int bucket = normalizar(hash(p));
+            if(this->tabla[bucket]){
+                //std::cout << "el bucket de " << p << " es" << bucket << " ";
+                return (this->tabla[bucket]->getCant());                
+            }else{
+                return 0;
+            }
+
         }
 
 };
 
 int main()
 {
-    // TODO
+    int n = 0;
+    std::cin >> n;
+    Cajonera* cajones = new Cajonera(n);
+    for(int i = 0; i < n; i++){
+        std::string pal;
+        std::cin >> pal;
+        cajones->agregarCajon(pal);
+    }
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        std::string pal;
+        std::cin >> pal;
+        std::cout << cajones->consultaPal(pal) << "\n";
+    }
+    std::cout << cajones->getCantCajones() << " " << cajones->getMaxCajon();
     return 0;
 }

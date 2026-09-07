@@ -24,3 +24,6 @@
 - Para la inserción, se inserta el nodo como en un ABB normal, pero luego se actualizan las alturas de los nodos y se hacen rotaciones si es necesario. En este proceso, a lo sumo se recorre una rama entera del árbol, que como está en su mayoría balanceado. Por lo que es O(log(n))
 - Para la búsqueda, es como en un ABB, no hay diferencias. También es O(log(n))
 - Para el rango, también funciona como en un ABB. Se recorren nodos del árbol recursivamente hasta que haya uno en el intervalo [min, max]. Cuando se lo encuentra, sea éste Z, se recorren todos sus descendientes en orden, por lo que primero se va por Z->izq, luego se imprime Z y luego se va por Z->der.
+
+## 2026-09-04 — Guillermo
+-Luego de la lectura del obli intento encontrar la funcion de hash perfect utilizando la idea del dia anterior.
