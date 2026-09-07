@@ -34,4 +34,4 @@
 
 ## 2026-09-07 - En conjunto
 
-- Resolvimos el error en el código del AVL, resulta que estaba haciendo mal las comparaciones del valor a la hora de hacer las rotaciones. Ahora funciona bien en todos los casos. 
+- Resolvimos el error en el código del AVL, resulta que estaba haciendo mal las comparaciones del valor a la hora de hacer las rotaciones. Ahora funciona bien en todos los casos. También iniciamos la estructura del heap (archivo .h y .cpp con las funciones básicas), con lo que vimos en clase, ya que no es necesario hacer muchas adaptaciones.
