@@ -8,13 +8,13 @@
 > con comentarios en el código fuente. La omisión de fuentes puede considerarse plagio.
 
 ## Ejercicio 1
-- Código discutido en clase, para la implementación del AVL.
+- Código discutido en clase, para la implementación del AVL. También se usó el libro Data Structures de Mark Weiss como apoyo, y ChatGPT para corregir algunos errores (no se copió código).
 
 ## Ejercicio 2
 - Implementación propia, teniendo a la vista el codigo hecho en clase de hash cerrado.
 
 ## Ejercicio 3
-- Implementación íntegramente propia, sin fuentes externas.
+- Implementación íntegramente propia, considerando el código visto en clase de práctico.
 
 ## Ejercicio 4
 - Implementación íntegramente propia, sin fuentes externas.

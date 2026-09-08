@@ -26,7 +26,7 @@
 - Para el rango, también funciona como en un ABB. Se recorren nodos del árbol recursivamente hasta que haya uno en el intervalo [min, max]. Cuando se lo encuentra, sea éste Z, se recorren todos sus descendientes en orden, por lo que primero se va por Z->izq, luego se imprime Z y luego se va por Z->der.
 
 ## 2026-09-04 - Marcos Bellini
-- Me encontré con errores de compilación en el AVL. Para resolverlos, ordené el código en el .h y el .cpp con ayuda de chatgpt para que no tuviera problemas con la clase AVL (separación de especificación e implementación) y ahí compiló. 
+- Me encontré con errores de compilación en el AVL. Para resolverlos, ordené el código en el .h y el .cpp con ayuda de chatgpt (solo para debugging) para que no tuviera problemas con la clase AVL (separación de especificación e implementación) y ahí compiló. 
 -Luego descubrí que estaba usando el tamaño de número equivocado para las monedas; en vez de usar int tengo que usar long long para que no se salga de rango. Además, corregí la lectura de archivo por consola con el comando cin, que estaba leyendo mal las líneas.
 
 - También corregí el código de la función "rango" del AVL, que a veces no funcionaba bien.
@@ -34,4 +34,11 @@
 
 ## 2026-09-07 - En conjunto
 
-- Resolvimos el error en el código del AVL, resulta que estaba haciendo mal las comparaciones del valor a la hora de hacer las rotaciones. Ahora funciona bien en todos los casos. También iniciamos la estructura del heap (archivo .h y .cpp con las funciones básicas), con lo que vimos en clase, ya que no es necesario hacer muchas adaptaciones.
+- Resolvimos el error en el código del AVL, resulta que estaba haciendo mal las comparaciones del valor a la hora de hacer las rotaciones. Ahora funciona bien en todos los casos. También iniciamos la estructura del heap (archivo .h y .cpp con las funciones básicas), con lo que vimos en clase, ya que no es necesario hacer muchas adaptaciones. Se hicieron las implementaciones de esas funciones
+
+## 2026-09-07 - Marcos
+
+- Tuve algunos problemas con la ejecución del ejercicio 3, probablemente por usar el tipo de entero equivocado. Ahora uso el tipo long long para todos los tamaños de archivo en el Heap (porque llega a 2^63 como máximo), se resolvió el problema.
+
+- Ahora hay otro error en los tests (da el número equivocado) a partir del 10000.txt, queda diagnosticar el problema.
+- Resulta que el error estaba en que, al hundir o flotar un elemento en el heap, se lo tomaba como long en vez de long long, lo que alteraba el valor original. Ahora funciona bien, lo raro es que de vez en cuando aparece un "segmentation fault" al probar con el 1000000.in.txt
