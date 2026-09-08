@@ -25,7 +25,9 @@
 - Para la búsqueda, es como en un ABB, no hay diferencias. También es O(log(n))
 - Para el rango, también funciona como en un ABB. Se recorren nodos del árbol recursivamente hasta que haya uno en el intervalo [min, max]. Cuando se lo encuentra, sea éste Z, se recorren todos sus descendientes en orden, por lo que primero se va por Z->izq, luego se imprime Z y luego se va por Z->der.
 
-<<<<<<< HEAD
+## 2026-09-04 — Guillermo
+-Luego de la lectura del obli intento encontrar la funcion de hash perfect utilizando la idea del dia anterior.
+
 ## 2026-09-04 - Marcos Bellini
 - Me encontré con errores de compilación en el AVL. Para resolverlos, ordené el código en el .h y el .cpp con ayuda de chatgpt (solo para debugging) para que no tuviera problemas con la clase AVL (separación de especificación e implementación) y ahí compiló. 
 -Luego descubrí que estaba usando el tamaño de número equivocado para las monedas; en vez de usar int tengo que usar long long para que no se salga de rango. Además, corregí la lectura de archivo por consola con el comando cin, que estaba leyendo mal las líneas.
@@ -43,13 +45,8 @@
 
 - Ahora hay otro error en los tests (da el número equivocado) a partir del 10000.txt, queda diagnosticar el problema.
 - Resulta que el error estaba en que, al hundir o flotar un elemento en el heap, se lo tomaba como long en vez de long long, lo que alteraba el valor original. Ahora funciona bien, lo raro es que de vez en cuando aparece un "segmentation fault" al probar con el 1000000.in.txt
-=======
-## 2026-09-04 — Guillermo
--Luego de la lectura del obli intento encontrar la funcion de hash perfect utilizando la idea del dia anterior.
 
-## 2026-09-07 - Conjunto
-(unir a lo que haya escrito marcos) Se hizo el main para resolver el problema en el primer conjunto de pruebas hubo errores. Nos dimos por vencidos con la funcion de hash perfecta pasamos a implementarlo con la posibilidad que haya varios cajones en cada bucket, en el que la palabra verifica que pertenece a el antes de entrar, si no entra se itera por la lista del bucket. Para hacer comparaciones en O(1) usamos un array como estructura auxiliar como en el parcial de A1
+- En el ejercicio 2 se hizo el main para resolver el problema. En el primer conjunto de pruebas hubo errores. Nos dimos por vencidos con la funcion de hash perfecta pasamos a implementarlo con la posibilidad que haya varios cajones en cada bucket, en el que la palabra verifica que pertenece a él antes de entrar, si no entra se itera por la lista del bucket. Para hacer comparaciones en O(1) usamos un array como estructura auxiliar como en el parcial de Algoritmos 1
 
 ## 2026-09-08 — Guillermo
 Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
->>>>>>> b4427cad7e0717aaa8a66f89154a16ee8a163802

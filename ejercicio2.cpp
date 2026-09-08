@@ -154,6 +154,6 @@ int main()
         std::cin >> pal;
         std::cout << cajones->consultaPal(pal) << "\n";
     }
-    std::cout << cajones->getCantCajones() << " " << cajones->getMaxCajon();
+    std::cout << cajones->getCantCajones() << " " << cajones->getMaxCajon() << endl;
     return 0;
 }
