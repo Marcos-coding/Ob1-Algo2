@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <limits>
+#include "HeapMin.cpp"
 
 using namespace std;
 

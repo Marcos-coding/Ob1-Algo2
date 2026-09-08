@@ -6,7 +6,7 @@ private:
 
 public:
     HeapMin(long esperados){
-        datos = new long long[esperados];
+        datos = new long long[esperados + 1];
         capacidad = esperados;
         cantidad = 0;
     }
