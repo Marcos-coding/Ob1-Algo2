@@ -14,9 +14,18 @@ class Cajonera {
                 string pal;
                 Cajon* sig;
             public: 
-                Cajon(string p, int cant, Cajon* c): pal(p), sig(c), cantPals(cant) {}
+                Cajon(string p, Cajon* c): pal(p), sig(c), cantPals(1) {}
                 int getCant() {
                     return this->cantPals;
+                }
+                string getPal(){
+                    return pal;
+                }
+                void sumCant(){
+                    this->cantPals++;
+                }
+                Cajon* getSig(){
+                    return this->sig;
                 }
         };
         int largoTabla;
@@ -26,7 +35,7 @@ class Cajonera {
         int* primos;
 
         int hash(string p){
-            int hash = 1; //Seria mejor que el array fuera un atributo del hash mismo??
+            int hash = 1;
             for(int i = 0; i < p.size(); i++){
                 hash = hash * this->primos[p[i] - 97];
             }
@@ -46,6 +55,24 @@ class Cajonera {
         int primoSup(int num) { //del repo de clase
             while (!esPrimo(++num));
             return num;
+        }
+        string ordenarPal(string pal){
+            int* aux = new int[26];
+            for(int i = 0; i < 26; i++){
+                aux[i] = 0;
+            }
+            for(int i = 0; i < pal.size(); i++){
+                aux[pal.at(i)-97]++;
+            }
+            string ret = "";
+            for(int i = 0; i < 26; i++){
+                while(aux[i] > 0){
+                    ret += i+'a'; //Esto es Orden constante xq el while va a hacer la cantidad de iteraciones letras tenga la palabra
+                    aux[i]--;
+                }
+            }
+            delete [] aux;
+            return ret;
         }
     public:
         Cajonera(int esperados){
@@ -68,41 +95,45 @@ class Cajonera {
             }
         }
         void agregarCajon(string p){
-            int bucket = normalizar(hash(p));
+            std::string pal = ordenarPal(p);
+            int bucket = normalizar(hash(pal));
             Cajon* cajon = this->tabla[bucket];
-            if(!cajon){
+            bool encontre = false;
+            while(cajon && !encontre){
+                if(cajon->getPal().compare(pal) == 0){
+                    cajon->sumCant();
+                    encontre = true;
+                    if(cajon->getCant() > this->maxCajon){
+                        this->maxCajon = cajon->getCant();
+                    }
+                }
+                cajon = cajon->getSig();
+            }
+            if(!encontre){
                 this->cantCajones++;
-                Cajon* nuevo = new Cajon(p, 1, NULL);
+                Cajon* nuevo = new Cajon(pal, this->tabla[bucket]);
                 this->tabla[bucket] = nuevo;
                 if(this->maxCajon == 0){
-                    this->maxCajon++;
-                }
-            }else{
-                int cant = cajon->getCant()+1;
-                Cajon* nuevo = new Cajon(p, cant, cajon);
-                this->tabla[bucket] = nuevo;
-                if(cant > this->maxCajon){
-                    this->maxCajon++;
+                    this->maxCajon = 1;
                 }
             }
-            
-            
-        }
+        }        
         int getMaxCajon(){
             return this->maxCajon;
         }
         int getCantCajones(){
             return this->cantCajones;
         }
-        int consultaPal(string p){
+        int consultaPal(string p){ 
             int bucket = normalizar(hash(p));
-            if(this->tabla[bucket]){
-                //std::cout << "el bucket de " << p << " es" << bucket << " ";
-                return (this->tabla[bucket]->getCant());                
-            }else{
-                return 0;
+            Cajon* cajon = this->tabla[bucket];
+            while(cajon){
+                if(cajon->getPal().compare(ordenarPal(p)) == 0){
+                    return cajon->getCant();
+                }
+                cajon = cajon->getSig();
             }
-
+            return 0;
         }
 
 };
