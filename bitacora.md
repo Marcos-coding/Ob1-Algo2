@@ -49,4 +49,11 @@
 - En el ejercicio 2 se hizo el main para resolver el problema. En el primer conjunto de pruebas hubo errores. Nos dimos por vencidos con la funcion de hash perfecta pasamos a implementarlo con la posibilidad que haya varios cajones en cada bucket, en el que la palabra verifica que pertenece a él antes de entrar, si no entra se itera por la lista del bucket. Para hacer comparaciones en O(1) usamos un array como estructura auxiliar como en el parcial de Algoritmos 1
 
 ## 2026-09-08 — Guillermo
-Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
+- Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
+
+
+## 2026-09-09 En conjunto
+- Empezamos a pensar el ejercicio 4. Necesitamos un MinHeap para ordenar las prioridades de los módulos, pero para saber cuál se compila primero se requiere de un grafo. Como el número de módulos llega a ser 500000, una matriz de adyacencia tendría 500000^2 = 250000 millones de entradas booleanas, lo cual es infactible (además el orden espacial es V + A, no V^2). Por lo que usaremos listas de adyacencia para implementarlo. De esta forma, se almacenan las A aristas dirigidas (las dependencias) en el grafo y los V vértices (módulos).
+
+## 2026-09-12 - Marcos
+- Comencé a implementar algunas funciones del grafo dirigido del ejercicio 4. Me di cuenta que preciso un array para almacenar la cantidad de aristas de entrada por cada vértice, para poder buscar los vértices que tienen 0 aristas y así hacer un ordenamiento topológico. Si no hay ninguno que comple con esto, o se terminó de recorrer el grafo, o hay un ciclo y no hay solución.
