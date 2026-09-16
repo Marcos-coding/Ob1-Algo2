@@ -50,3 +50,6 @@
 
 ## 2026-09-08 — Guillermo
 Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
+
+## 2026-09-15 - Guillermo
+Vengo con boceto de solucion al ejercicio 4, escribo un seudocodigo. La idea es tener un grafo con las dependencias que ademas tenga un array que tenga los grados de incidencia de cada vertice. Se cargan los datos al grafo y de ahi se insertan al heap los vertices cuyos grado de incidencia sea cero. Se hace un while el heap no sea vacio, se desencola un vertice y para todos los adyacentes al vertice se les reduce 1 en su grado de incidencia, si alguno llega a grado 0 se lo inserta al heap. Loop hasta procesar todo el grafo. Todavia no defini donde guardar la informacion de la prioridad de cada modulo, en el heap no puede ser porque no se van a ingrasar los datos al comienzo y no me doy cuenta de como poner ese dato en la representacion del grafo sin un array auxiliar. Me queda la duda de si tener el array de grados auxiliar cumple con el orden de espacio, hay que analizar si se puede o no usar.
