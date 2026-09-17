@@ -57,3 +57,7 @@
 
 ## 2026-09-12 - Marcos
 - Comencé a implementar algunas funciones del grafo dirigido del ejercicio 4. Me di cuenta que preciso un array para almacenar la cantidad de aristas de entrada por cada vértice, para poder buscar los vértices que tienen 0 aristas y así hacer un ordenamiento topológico. Si no hay ninguno que comple con esto, o se terminó de recorrer el grafo, o hay un ciclo y no hay solución.
+Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
+
+## 2026-09-15 - Guillermo
+Vengo con boceto de solucion al ejercicio 4, escribo un seudocodigo. La idea es tener un grafo con las dependencias que ademas tenga un array que tenga los grados de incidencia de cada vertice. Se cargan los datos al grafo y de ahi se insertan al heap los vertices cuyos grado de incidencia sea cero. Se hace un while el heap no sea vacio, se desencola un vertice y para todos los adyacentes al vertice se les reduce 1 en su grado de incidencia, si alguno llega a grado 0 se lo inserta al heap. Loop hasta procesar todo el grafo. Todavia no defini donde guardar la informacion de la prioridad de cada modulo, en el heap no puede ser porque no se van a ingrasar los datos al comienzo y no me doy cuenta de como poner ese dato en la representacion del grafo sin un array auxiliar. Me queda la duda de si tener el array de grados auxiliar cumple con el orden de espacio, hay que analizar si se puede o no usar.
