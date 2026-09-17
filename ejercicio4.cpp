@@ -42,6 +42,15 @@ class grafo {
             this->ady[origen] = a;
             this->grados[destino] ++;
         }
+        arista* vecinos(int origen){
+            return this->ady[origen];
+        }
+        void bajarGrado(int vertice){
+            this->grados[vertice]--;
+        }
+        int gradoIncidencia(int vertice){
+            return this->grados[vertice];
+        }
 
 };
 
@@ -51,8 +60,10 @@ int main()
     int A;
     cin >> V >> A; //no me acuerdo si esta bien esto, revisar
     grafo* dependencias = new grafo(V);
+    int* prioridades = new int[V];
+    HeapMin* heap = new HeapMin(V);
     for(int i = 0; i < V; i ++){
-        //No se todavia bien q hacer con las prioridades
+        cin >> prioridades[i];
     }
     for(int i = 0; i < A; i ++){
         int origen;
@@ -61,15 +72,25 @@ int main()
         dependencias->agregarArista(origen, destino);
     }
     //Detectar ciclos, si ciclo => termina
-    //heap->insterar(vertices de grado de incidencia 0)
-    //while(!heap->esVacio){
-        //modulo = heap->desencolar
-        //cout modulo
-        //for each arista in grafo->ady[modulo]{
-            //grafo->grados[arista->destino] --
-            //if(grafo->grados[arista->destino] == 0){
-                //heap->insertar(arista->destino)
-            
-
+    for(int i = 0; i < V; i++){
+        if(dependencias->gradoIncidencia(i) == 0){
+            heap->insertar(i); //cambiar heap para insertar la prioridad tambien
+        }
+    }
+    while(heap->cantElementos() != 0){
+        int modulo = heap->eliminar();
+        cout << modulo << "\n";
+        arista* vecinos = dependencias->vecinos(modulo);
+        while(vecinos->getSig()) { 
+            int dest = vecinos->getDest();
+            dependencias->bajarGrado(dest);
+            if(dependencias->gradoIncidencia(dest) == 0){
+                heap->insertar(dest);
+            }
+            vecinos = vecinos->getSig();
+        }            
+    }
+    delete [] prioridades;
+    //resto de deletes si se quiere
     return 0;
 }
