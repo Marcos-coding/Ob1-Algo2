@@ -61,3 +61,11 @@ Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
 
 ## 2026-09-15 - Guillermo
 Vengo con boceto de solucion al ejercicio 4, escribo un seudocodigo. La idea es tener un grafo con las dependencias que ademas tenga un array que tenga los grados de incidencia de cada vertice. Se cargan los datos al grafo y de ahi se insertan al heap los vertices cuyos grado de incidencia sea cero. Se hace un while el heap no sea vacio, se desencola un vertice y para todos los adyacentes al vertice se les reduce 1 en su grado de incidencia, si alguno llega a grado 0 se lo inserta al heap. Loop hasta procesar todo el grafo. Todavia no defini donde guardar la informacion de la prioridad de cada modulo, en el heap no puede ser porque no se van a ingrasar los datos al comienzo y no me doy cuenta de como poner ese dato en la representacion del grafo sin un array auxiliar. Me queda la duda de si tener el array de grados auxiliar cumple con el orden de espacio, hay que analizar si se puede o no usar.
+
+## 2026-09-18 - En conjunto
+- Decidimos crear una clase de Heap template para poder usar los mismos metodos en el ejercicio 3 y el 4, pero con estructuras diferentes. Para ello, el Heap-Min debe comparar objetos genericos (nodos) en vez de enteros, a lo cual tenemos que crear clases para los nodos de archivo (ejercicio 3) y dependencias (ejercicio 4) y sus comparadores. Hicimos una prueba y funciona el concepto.
+
+- El ejercicio 4 da problemas en ejecución, da números muy grandes que no deberían ser posibles.
+
+## 2026-09-19 Marcos
+- Corregí algunos errores en la implementación del ejercicio 4. Para empezar, el array de grados de incidencia en el grafo no se inicializaba en 0, pudiendo haber valores residuales. También arreglé la indexación de algunos arrays, como el de prioridades (en main) y aristas en el grafo, porque los vértices comienzan a contarse en 1, no en 0. Esto no afecta al orden de espacio O(V + A) ya que se agrega un lugar vacío en la posición 0. Ahora funciona mejor, pero da error en la mitad de las pruebas.
