@@ -2,15 +2,16 @@
 #include <string>
 #include <iostream>
 #include <limits>
-#include "tads/HeapMin.cpp"
+#include "tads/NodoModulo.cpp"
+#include "tads/HeapTemp.cpp"
 
 using namespace std;
 
 class arista {
-    private:
+    public:
         int dest;
         arista* sig;
-    public:
+
         int getDest(){
             return this->dest;
         }
@@ -31,45 +32,107 @@ class grafo {
     public:
         grafo(int cantV){
             this->cantV = cantV;
-            this->ady = new arista*[cantV];
-            for(int i = 0; i < cantV; i++){
+            this->ady = new arista*[cantV + 1];
+            for(int i = 0; i < cantV + 1; i++){
                 this->ady[i] = NULL;
             }
-            this->grados = new int[cantV];
-        }
-        void agregarArista(int origen, int destino){
-            arista* a = new arista(destino, this->ady[origen]);
-            this->ady[origen] = a;
-            this->grados[destino] ++;
+            this->grados = new int[cantV + 1];
+            for (int i = 0; i <= cantV; i++)
+            {
+                grados[i] = 0;
+            }
+            
         }
 
+        void agregarArista(int origen, int destino){
+            arista* a = new arista(destino, NULL);
+            a->sig = this->ady[origen];
+            this->ady[origen] = a;
+            this->grados[destino]++;
+        }
+        int gradosIncidencia(int vertice){
+            return grados[vertice];
+        }
+        
+        void reducirIncidencia(int vertice){
+            if(grados[vertice] > 0){
+                grados[vertice]--;
+            }
+        }
+
+        arista* vecinos(int vertice){
+            return ady[vertice];
+        }
 };
 
 int main()
 {
     int V;
     int A;
-    cin >> V >> A; //no me acuerdo si esta bien esto, revisar
+    cin >> V >> A;
+
+    int pos = 0;
+    int* modulosOrd = new int[V];
     grafo* dependencias = new grafo(V);
-    for(int i = 0; i < V; i ++){
-        //No se todavia bien q hacer con las prioridades
+    HeapMin<NodoModulo> proximos = HeapMin<NodoModulo>(V);
+
+    //cargamos las prioridades en un array
+    int* prioridades = new int[V + 1];
+    for(int i = 1; i <= V; i++){
+        cin >> prioridades[i];
     }
+
+    int origen;
+    int destino;
     for(int i = 0; i < A; i ++){
-        int origen;
-        int destino;
         cin >> origen >> destino;
         dependencias->agregarArista(origen, destino);
     }
-    //Detectar ciclos, si ciclo => termina
-    //heap->insterar(vertices de grado de incidencia 0)
-    //while(!heap->esVacio){
-        //modulo = heap->desencolar
-        //cout modulo
-        //for each arista in grafo->ady[modulo]{
-            //grafo->grados[arista->destino] --
-            //if(grafo->grados[arista->destino] == 0){
-                //heap->insertar(arista->destino)
-            
+
+    for(int vert = 0; vert < V; vert ++){
+        if(dependencias->gradosIncidencia(vert) == 0){
+            NodoModulo n = NodoModulo(vert, prioridades[vert]);
+            proximos.insertar(n);
+        }
+    }
+
+    
+
+    NodoModulo elim;
+    NodoModulo nuevo;
+    int moduloDep;
+    arista* aristaDep;
+
+    while(proximos.cantElementos() > 0){
+        elim = proximos.eliminar();
+        modulosOrd[pos] = elim.modulo;
+        pos++;
+        arista* vecinos = dependencias->vecinos(elim.modulo);
+
+        aristaDep = vecinos;
+
+        while(aristaDep != NULL){
+            moduloDep = aristaDep->getDest();
+            dependencias->reducirIncidencia(moduloDep);
+
+            if(dependencias->gradosIncidencia(moduloDep) == 0){
+                nuevo = NodoModulo(moduloDep, prioridades[moduloDep]);
+                proximos.insertar(nuevo);
+            }
+            aristaDep = aristaDep->getSig();
+        }
+    }
+
+    bool hayCiclo = pos < V;
+
+    if(hayCiclo){
+        cout << "imposible" << endl;
+    }
+    else {
+        for (int i = 0; i < V; i++){
+            cout << modulosOrd[i] << endl;
+        }
+    }           
 
     return 0;
 }
