@@ -33,12 +33,9 @@ class grafo {
         grafo(int cantV){
             this->cantV = cantV;
             this->ady = new arista*[cantV + 1];
-            for(int i = 0; i < cantV + 1; i++){
-                this->ady[i] = NULL;
-            }
             this->grados = new int[cantV + 1];
-            for (int i = 0; i <= cantV; i++)
-            {
+            for (int i = 0; i <= cantV; i++){
+                this->ady[i] = NULL;
                 grados[i] = 0;
             }
             
@@ -61,7 +58,7 @@ class grafo {
         }
 
         arista* vecinos(int vertice){
-            return ady[vertice];
+            return this->ady[vertice];
         }
 };
 
@@ -73,6 +70,7 @@ int main()
 
     int pos = 0;
     int* modulosOrd = new int[V];
+    
     grafo* dependencias = new grafo(V);
     HeapMin<NodoModulo> proximos = HeapMin<NodoModulo>(V);
 
@@ -89,7 +87,7 @@ int main()
         dependencias->agregarArista(origen, destino);
     }
 
-    for(int vert = 0; vert < V; vert ++){
+    for(int vert = 1; vert <= V; vert ++){
         if(dependencias->gradosIncidencia(vert) == 0){
             NodoModulo n = NodoModulo(vert, prioridades[vert]);
             proximos.insertar(n);
@@ -107,6 +105,7 @@ int main()
         elim = proximos.eliminar();
         modulosOrd[pos] = elim.modulo;
         pos++;
+
         arista* vecinos = dependencias->vecinos(elim.modulo);
 
         aristaDep = vecinos;
