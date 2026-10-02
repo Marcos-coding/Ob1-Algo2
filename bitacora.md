@@ -54,10 +54,16 @@ Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
 ## 2026-09-15 - Guillermo
 Vengo con boceto de solucion al ejercicio 4, escribo un seudocodigo. La idea es tener un grafo con las dependencias que ademas tenga un array que tenga los grados de incidencia de cada vertice. Se cargan los datos al grafo y de ahi se insertan al heap los vertices cuyos grado de incidencia sea cero. Se hace un while el heap no sea vacio, se desencola un vertice y para todos los adyacentes al vertice se les reduce 1 en su grado de incidencia, si alguno llega a grado 0 se lo inserta al heap. Loop hasta procesar todo el grafo. Todavia no defini donde guardar la informacion de la prioridad de cada modulo, en el heap no puede ser porque no se van a ingrasar los datos al comienzo y no me doy cuenta de como poner ese dato en la representacion del grafo sin un array auxiliar. Me queda la duda de si tener el array de grados auxiliar cumple con el orden de espacio, hay que analizar si se puede o no usar.
 
+## 2026-09-16 - Guillermo
+Implemento el pseudocodigo de la ultima vez. Pongo las prioridades es un array auxiliar. Lo implementado no separa bien lo que es responsabilidad del tad y lo que es responsabilidad del main, queda aprolijar el codigo y separar lo que debe y no estar en main. Falta adaptar el heap para que ordene por prioridad y despues el valor. 
+
 ## 2026-09-18 - En conjunto
 - Decidimos crear una clase de Heap template para poder usar los mismos metodos en el ejercicio 3 y el 4, pero con estructuras diferentes. Para ello, el Heap-Min debe comparar objetos genericos (nodos) en vez de enteros, a lo cual tenemos que crear clases para los nodos de archivo (ejercicio 3) y dependencias (ejercicio 4) y sus comparadores. Hicimos una prueba y funciona el concepto.
 
 - El ejercicio 4 da problemas en ejecución, da números muy grandes que no deberían ser posibles.
 
-## 2026-09-19 Marcos
-- Corregí algunos errores en la implementación del ejercicio 4. Para empezar, el array de grados de incidencia en el grafo no se inicializaba en 0, pudiendo haber valores residuales. También arreglé la indexación de algunos arrays, como el de prioridades (en main) y aristas en el grafo, porque los vértices comienzan a contarse en 1, no en 0. Esto no afecta al orden de espacio O(V + A) ya que se agrega un lugar vacío en la posición 0. Ahora funciona mejor, pero da error en la mitad de las pruebas.
+## 2026-09-20 - Guillermo
+Termino con el heap, y actualizo el codigo del main al heap nuevo. Hago todos los array relacionados a vertices de largo V+1 para que el vertice v, se enucentre en la pos v del array (y no en la v-1). Ahi quedo funcionando para todos los casos sin ciclos. Para detectar ciclos lo que hago es procesar el grado dos veces, la primera no imprime nada y cuando termina se verifica que el array de grados quede todo en 0, en caso de que si, es porque no hay ciclos, se restableze el array de ordenes (Que es lo unico que se modifica) y se vuelve a hacer el codigo pero imprimiendo los modulos en orden de ejecucion, en caso de que el array no quede todo en 0 es porque hay un ciclo, se imprime imposible y termina.
+
+## 2026-10-2 - Guillermo
+Empiezo y termino el ejercicio 5 en clase de practico. Se adapto el heap a trabajar con aristas, se implemento el MFset como visto en clase, y se implemento el pseudocodigo de kruscal visto en clase. No cree el grafo, era redundante solo se necesitaban las aristas y la suma del peso.
