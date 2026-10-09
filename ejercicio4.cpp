@@ -191,12 +191,7 @@ int main()
         cin >> origen >> destino;
         dependencias->agregarArista(origen, destino);
     }
-    long* prioCopia = new long[V + 1];
-    //Detectar ciclos, si ciclo => termina
-    //No se si es la mejor forma, pero voy a hacer el proceso dos veces, la primera sin imprimir y si no llega a pasar por todos los nodos hay un ciclo, la segunda cuando se que no hay ciclo imprimo respuestas
-    for(int i = 0; i <= V; i++){
-        prioCopia[i] = dependencias->gradoIncidencia(i);
-    }
+    long* orden = new long[V + 1];
     bool hayCiclo = false;
     for(int i = 1; i <= V; i++){
         if(dependencias->gradoIncidencia(i) == 0){
@@ -204,9 +199,10 @@ int main()
             heap->insertar(n); 
         }
     }
+    int n = 1;
     while(heap->cantElementos() != 0){
         Modulo* modulo = heap->eliminar();
-        
+        orden[n] = modulo->num;
         arista* vecinos = dependencias->vecinos(modulo->num);
         while(vecinos) { 
             int dest = vecinos->getDest();
@@ -224,25 +220,8 @@ int main()
         }
     }
     if(!hayCiclo){
-        dependencias->setGrados(prioCopia);
         for(int i = 1; i <= V; i++){
-            if(dependencias->gradoIncidencia(i) == 0){
-                Modulo* n = new Modulo(i, prioridades[i]);
-                heap->insertar(n); 
-            }
-        }
-        while(heap->cantElementos() != 0){
-            Modulo* modulo = heap->eliminar();
-            cout << modulo->num << "\n";
-            arista* vecinos = dependencias->vecinos(modulo->num);
-            while(vecinos) { 
-                int dest = vecinos->getDest();
-                dependencias->bajarGrado(dest);
-                if(dependencias->gradoIncidencia(dest) == 0){
-                    heap->insertar(new Modulo(dest, prioridades[dest]));
-                }
-                vecinos = vecinos->getSig();
-            }            
+            cout << orden[i] << endl;
         }
     }
 
