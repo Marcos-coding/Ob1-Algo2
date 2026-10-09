@@ -37,7 +37,7 @@ private:
     long cantidad;
 
 public:
-    HeapMin(long esperados){ //No pense mucho en la adaptacion a aristas solo cambie los modulo Menor que por peso <=
+    HeapMin(long esperados){ 
         datos = new Arista*[esperados + 1];
         capacidad = esperados;
         cantidad = 0;
@@ -179,7 +179,7 @@ int main()
     }
     long cantA = 0;
     long sum = 0;
-    for(int i = 0; i < E && cantA != V-1; i ++){
+    for(int i = 0; i < E && cantA < V-1; i ++){
         Arista* a = heap->eliminar();
         if(mfs->grupo(a->getDestino()) != mfs->grupo(a->getOrigen())){
             cantA++;
