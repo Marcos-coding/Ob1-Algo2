@@ -127,7 +127,7 @@ class arista {
             this->sig = unSig;
         }
         ~arista(){
-            delete this->sig; //Esta bien esta llamada recursiva??
+            delete this->sig;
             delete this;
         }
 };
@@ -136,11 +136,11 @@ class grafo {
     private:
         long cantV;
         arista** ady;
-        long* grados; //Grados de incidencia de los vertices
+        long* grados;
     public:
         grafo(long cantV){
             this->cantV = cantV;
-            this->ady = new arista*[cantV + 1]; //Si desperdicia la pos 0, se puede ver de desplazar los indices
+            this->ady = new arista*[cantV + 1];
             for(int i = 0; i <= cantV; i++){
                 this->ady[i] = NULL;
             }
@@ -249,6 +249,5 @@ int main()
     }
 
     delete [] prioridades;
-    //resto de deletes si se quiere
     return 0;
 }

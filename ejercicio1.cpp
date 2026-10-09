@@ -27,7 +27,6 @@ int main()
         cin >> entrada;
 
         if(operacion == "RANGO"){
-            //lectura de la segunda entrada en la linea
             cin >> entrada2;
         }
 

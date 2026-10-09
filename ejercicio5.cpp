@@ -77,7 +77,7 @@ public:
                     break;
                 }
 
-                hijo = (datos[hijoIzq(pos)]->getPeso() <= datos[hijoDer(pos)]->getPeso()) ? hijoIzq(pos) : hijoDer(pos); //Revisar esto
+                hijo = (datos[hijoIzq(pos)]->getPeso() <= datos[hijoDer(pos)]->getPeso()) ? hijoIzq(pos) : hijoDer(pos);
             }
             else if(valor->getPeso() <= datos[hijoIzq(pos)]->getPeso()){
                 break;

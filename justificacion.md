@@ -8,6 +8,7 @@
 
 ## Ejercicio 2
 
+* No hay restricciones de tiempo para crear la tabla, por lo que podemos buscar un número primo superior a la cantidad de esperados para establecerlo como largo de tabla.
 * Como se pide un órden de ejecución de O(L) para agregar y buscar una palabra, se utiliza una función de hash buena, de forma que incluso si el hashing es abierto, la cantidad de cajones por cada bucket sea O(1) en general. La función de hash elegida implica asignar un número primo a cada letra del alfabeto, empezando con 2 para la letra 'a', 3 para 'b', etc. El número hash empieza siendo 1, y se multiplica por todos los primos correspondientes a cada letra de la palabra (si hay M letras iguales, se multiplica por ese primo M veces).
 * Por último se normaliza el hash con el largo de la tabla, que es un número primo superior a (N * 2), en donde N es la cantidad de palabras esperadas. Esto se hace para evitar que el factor de carga supere 0.5 en caso promedio y el órden de búsqueda sea constante.
 * Cuando se agrega un cajón, se ordenan los caracteres de la palabra con Counting Sort que es O(L), y se la almacena en el cajón con su cantidad 1. Esto asegura que cualquier otra palabra que pertenezca a ese cajón, si se la ordena, sea igual a la del cajón.

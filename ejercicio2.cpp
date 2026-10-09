@@ -44,7 +44,7 @@ class Cajonera {
         int normalizar(int h){
             return abs(h % largoTabla);
         }
-        bool esPrimo(int num) { //Copy paste del repo de clase
+        bool esPrimo(int num) {
             if (num < 2) return false;
             for (int i = 2; i * i <= num; i++) {
                 if (num % i == 0) return false;
@@ -52,11 +52,11 @@ class Cajonera {
             return true;
         }
 
-        int primoSup(int num) { //del repo de clase
+        int primoSup(int num) {
             while (!esPrimo(++num));
             return num;
         }
-        string ordenarPal(string pal){ //O(L)
+        string ordenarPal(string pal){
             int* aux = new int[26];
             for(int i = 0; i < 26; i++){
                 aux[i] = 0;
@@ -67,7 +67,7 @@ class Cajonera {
             string ret = "";
             for(int i = 0; i < 26; i++){
                 while(aux[i] > 0){
-                    ret += i+'a'; //Esto es Orden constante xq el while va a hacer la cantidad de iteraciones letras tenga la palabra
+                    ret += i+'a';
                     aux[i]--;
                 }
             }
@@ -76,7 +76,7 @@ class Cajonera {
         }
     public:
         Cajonera(int esperados){
-            this->largoTabla = primoSup(esperados*2); //Ojo que es O(N^2)
+            this->largoTabla = primoSup(esperados*2);
             this->tabla = new Cajon*[this->largoTabla];
             for(int i = 0; i < this->largoTabla; i ++){
                 this->tabla[i] = NULL;
@@ -85,7 +85,7 @@ class Cajonera {
             this->maxCajon = 0;
             this->primos = new int[26];
             int n = 1;
-            for(int i = 0; i < 26; i ++){ //O(1)
+            for(int i = 0; i < 26; i ++){
                 this->primos[i] = primoSup(n);
                 if(this->primos[i] == this->largoTabla){
                     n = primos[i];
@@ -95,11 +95,11 @@ class Cajonera {
             }
         }
         void agregarCajon(string p){
-            std::string pal = ordenarPal(p); //O(L)
+            std::string pal = ordenarPal(p);
             int bucket = normalizar(hash(pal));
             Cajon* cajon = this->tabla[bucket];
             bool encontre = false;
-            while(cajon && !encontre){ //si es una funcion buena, es O(1)
+            while(cajon && !encontre){
                 if(cajon->getPal().compare(pal) == 0){
                     cajon->sumCant();
                     encontre = true;
