@@ -20,5 +20,10 @@
 - Sin restricciones de órdenes. / Justificación: ...
 
 ## Ejercicio 5
-- Sin restricciones de órdenes. / Justificación: ...
+- Resolver en orden temporal O(ElogE) en el peor caso, siendo E la cantidad de senderos.
+Orden espacial O(V + E)
+/ Justificación: 
+- Orden Temporal: El primer for hace E iteraciones de insertar en un heap, que es O(1) promedio, por lo que el primer for es O(E). El segundo for hace hasta E iteraciones en peor caso de eliminar de un heap (O(log e)), hace Find y Merge sobre un MFSet que como se implemento con ambas optimizaciones por lo que son O(1). Por lo que el segundo for termina siendo O(E + E logE), que es lo mismo a O(E logE) como requerido.
+- Orden Espacial: Utiliza un heap de tamaño E, para las aristas y un MFSet de largo V, donde se guarda el grupo de cada vertice. Por lo que es O(V + E)
+
 

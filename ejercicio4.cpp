@@ -178,7 +178,7 @@ int main()
 {
     int V;
     int A;
-    cin >> V >> A; //no me acuerdo si esta bien esto, revisar
+    cin >> V >> A;
     grafo* dependencias = new grafo(V);
     int* prioridades = new int[V + 1];
     HeapMin* heap = new HeapMin(V);
