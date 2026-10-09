@@ -49,6 +49,14 @@
 - En el ejercicio 2 se hizo el main para resolver el problema. En el primer conjunto de pruebas hubo errores. Nos dimos por vencidos con la funcion de hash perfecta pasamos a implementarlo con la posibilidad que haya varios cajones en cada bucket, en el que la palabra verifica que pertenece a él antes de entrar, si no entra se itera por la lista del bucket. Para hacer comparaciones en O(1) usamos un array como estructura auxiliar como en el parcial de Algoritmos 1
 
 ## 2026-09-08 — Guillermo
+- Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
+
+
+## 2026-09-09 En conjunto
+- Empezamos a pensar el ejercicio 4. Necesitamos un MinHeap para ordenar las prioridades de los módulos, pero para saber cuál se compila primero se requiere de un grafo. Como el número de módulos llega a ser 500000, una matriz de adyacencia tendría 500000^2 = 250000 millones de entradas booleanas, lo cual es infactible (además el orden espacial es V + A, no V^2). Por lo que usaremos listas de adyacencia para implementarlo. De esta forma, se almacenan las A aristas dirigidas (las dependencias) en el grafo y los V vértices (módulos).
+
+## 2026-09-12 - Marcos
+- Comencé a implementar algunas funciones del grafo dirigido del ejercicio 4. Me di cuenta que preciso un array para almacenar la cantidad de aristas de entrada por cada vértice, para poder buscar los vértices que tienen 0 aristas y así hacer un ordenamiento topológico. Si no hay ninguno que comple con esto, o se terminó de recorrer el grafo, o hay un ciclo y no hay solución.
 Termino de implementar el hash abierto. Pasa el primer conjunto de pruebas
 
 ## 2026-09-15 - Guillermo
@@ -62,8 +70,13 @@ Implemento el pseudocodigo de la ultima vez. Pongo las prioridades es un array a
 
 - El ejercicio 4 da problemas en ejecución, da números muy grandes que no deberían ser posibles.
 
+<<<<<<< HEAD
+## 2026-09-19 Marcos
+- Corregí algunos errores en la implementación del ejercicio 4. Para empezar, el array de grados de incidencia en el grafo no se inicializaba en 0, pudiendo haber valores residuales. También arreglé la indexación de algunos arrays, como el de prioridades (en main) y aristas en el grafo, porque los vértices comienzan a contarse en 1, no en 0. Esto no afecta al orden de espacio O(V + A) ya que se agrega un lugar vacío en la posición 0. Ahora funciona mejor, pero da error en la mitad de las pruebas.
+=======
 ## 2026-09-20 - Guillermo
 Termino con el heap, y actualizo el codigo del main al heap nuevo. Hago todos los array relacionados a vertices de largo V+1 para que el vertice v, se enucentre en la pos v del array (y no en la v-1). Ahi quedo funcionando para todos los casos sin ciclos. Para detectar ciclos lo que hago es procesar el grado dos veces, la primera no imprime nada y cuando termina se verifica que el array de grados quede todo en 0, en caso de que si, es porque no hay ciclos, se restableze el array de ordenes (Que es lo unico que se modifica) y se vuelve a hacer el codigo pero imprimiendo los modulos en orden de ejecucion, en caso de que el array no quede todo en 0 es porque hay un ciclo, se imprime imposible y termina.
 
 ## 2026-10-2 - Guillermo
 Empiezo y termino el ejercicio 5 en clase de practico. Se adapto el heap a trabajar con aristas, se implemento el MFset como visto en clase, y se implemento el pseudocodigo de kruscal visto en clase. No cree el grafo, era redundante solo se necesitaban las aristas y la suma del peso.
+>>>>>>> main

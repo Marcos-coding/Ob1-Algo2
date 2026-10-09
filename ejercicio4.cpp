@@ -188,7 +188,7 @@ class grafo {
         }
 
         arista* vecinos(int vertice){
-            return ady[vertice];
+            return this->ady[vertice];
         }
 };
 
@@ -197,6 +197,10 @@ int main()
     int V;
     int A;
     cin >> V >> A;
+
+    int pos = 0;
+    int* modulosOrd = new int[V];
+    
     grafo* dependencias = new grafo(V);
     int* prioridades = new int[V + 1];
     HeapMin* heap = new HeapMin(V);

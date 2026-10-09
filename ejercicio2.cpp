@@ -56,7 +56,7 @@ class Cajonera {
             while (!esPrimo(++num));
             return num;
         }
-        string ordenarPal(string pal){
+        string ordenarPal(string pal){ //O(L)
             int* aux = new int[26];
             for(int i = 0; i < 26; i++){
                 aux[i] = 0;
@@ -76,7 +76,7 @@ class Cajonera {
         }
     public:
         Cajonera(int esperados){
-            this->largoTabla = primoSup(esperados*2);
+            this->largoTabla = primoSup(esperados*2); //Ojo que es O(N^2)
             this->tabla = new Cajon*[this->largoTabla];
             for(int i = 0; i < this->largoTabla; i ++){
                 this->tabla[i] = NULL;
@@ -85,7 +85,7 @@ class Cajonera {
             this->maxCajon = 0;
             this->primos = new int[26];
             int n = 1;
-            for(int i = 0; i < 26; i ++){
+            for(int i = 0; i < 26; i ++){ //O(1)
                 this->primos[i] = primoSup(n);
                 if(this->primos[i] == this->largoTabla){
                     n = primos[i];
@@ -95,11 +95,11 @@ class Cajonera {
             }
         }
         void agregarCajon(string p){
-            std::string pal = ordenarPal(p);
+            std::string pal = ordenarPal(p); //O(L)
             int bucket = normalizar(hash(pal));
             Cajon* cajon = this->tabla[bucket];
             bool encontre = false;
-            while(cajon && !encontre){
+            while(cajon && !encontre){ //si es una funcion buena, es O(1)
                 if(cajon->getPal().compare(pal) == 0){
                     cajon->sumCant();
                     encontre = true;

@@ -84,7 +84,10 @@ public:
         T top = datos[1];
         datos[1] = datos[cantidad];
         cantidad--;
-        hundir(1);
+        
+        if(cantidad > 0){
+            hundir(1);
+        }
 
         return top;
     }
