@@ -2,13 +2,6 @@
 
 **Integrantes:** Marcos Bellini (304138), Guillermo Bértola (303665)
 
-> **Instrucciones** (borrar esta sección antes de entregar): agregar una entrada por
-> cada día trabajado, indicando la fecha y quién trabajó (un integrante o "En conjunto").
-> Registrar el proceso real: ideas exploradas, decisiones y su justificación, partes de
-> implementaciones, bugs encontrados y cómo se corrigieron, resultados de pruebas y dudas
-> abiertas. Si se usó IA ese día, indicar herramienta, consulta y qué se hizo con la
-> respuesta. Una bitácora escrita íntegramente el día de la entrega implica pérdida de puntos.
-
 ## 2026-09-03 — Guillermo
 
 - Ejemplo: Leí la letra del ejercicio 1. Primera idea: ... pero la restricción de
@@ -91,3 +84,7 @@ Implemento el pseudocodigo de la ultima vez. Pongo las prioridades es un array a
 
 - Optimizamos el código del ejercicio 4 para chequear ciclos una vez sola. En el orden que van saliendo los vértices, se cargan en un array de largo V + 1 (de las posiciones 1 a N), y si se detecta un ciclo en medio de la ejecución, se descarta el array. Si no hay, se imprime el resultado línea a línea luego de ejecutar el algoritmo.
 - Completamos la justificación de órdenes del informe.
+
+## 2026-10-12 - En conjunto
+
+* Completamos la declaración de autoría.
