@@ -141,10 +141,13 @@ class grafo {
         grafo(long cantV){
             this->cantV = cantV;
             this->ady = new arista*[cantV + 1];
+            this->grados = new long[cantV + 1];
+
             for(int i = 0; i <= cantV; i++){
                 this->ady[i] = NULL;
+                this->grados[i] = 0;
             }
-            this->grados = new long[cantV + 1];
+            
         }
         ~grafo(){
             for(int i = 0; i <= cantV; i++){
@@ -226,6 +229,8 @@ int main()
     while(heap->cantElementos() != 0){
         Modulo* modulo = heap->eliminar();
         orden[n] = modulo->num;
+        n++;
+        
         arista* vecinos = dependencias->vecinos(modulo->num);
         while(vecinos) { 
             int dest = vecinos->getDest();
@@ -236,7 +241,7 @@ int main()
             vecinos = vecinos->getSig();
         }            
     }
-    for(int i = 0; i <= V; i++){
+    for(int i = 1; i <= V; i++){
         if(dependencias->gradoIncidencia(i) > 0 && !hayCiclo){
             hayCiclo = true;
             cout << "imposible" << endl;

@@ -178,7 +178,7 @@ int main()
         heap->insertar(new Arista(d, p, o));
     }
     long cantA = 0;
-    long sum = 0;
+    long long sum = 0;
     for(int i = 0; i < E && cantA < V-1; i ++){
         Arista* a = heap->eliminar();
         if(mfs->grupo(a->getDestino()) != mfs->grupo(a->getOrigen())){
