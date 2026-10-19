@@ -88,3 +88,7 @@ Implemento el pseudocodigo de la ultima vez. Pongo las prioridades es un array a
 ## 2026-10-12 - En conjunto
 
 * Completamos la declaración de autoría.
+
+## 2026-10-19 - En conjunto
+
+* Corregimos un par de bugs en los ejercicios 4 y 5, en las máquinas de la facultad. El 4 tenía un índice que no avanzaba, por lo que no se imprimía el array de módulos. El 5 usaba long para la suma, causando overflow. En el caso del 5, depende de qué sistema operativo se use, la interpretación de la cantidad de bits que tiene un long (32 o 64) por lo que se debe usar long long.
